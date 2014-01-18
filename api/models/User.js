@@ -5,10 +5,23 @@
  * @description :: A short summary of how this model works and what it represents.
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
+function s4() {
+  return Math.floor((1 + Math.random()) * 0x10000)
+             .toString(16)
+             .substring(1);
+}
 
+function guid() {
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+         s4() + '-' + s4() + s4() + s4();
+}
 module.exports = {
 
   attributes: {
+    oauth2token: {
+      type: 'string',
+      defaultsTo: ''
+    },
   	firstName: 'string',
     lastName: 'string',
 
@@ -22,7 +35,8 @@ module.exports = {
     },
     email: {
       type: 'email',
-      required: true
+      required: true,
+      unique: true
     },
     password: 'string',
 
@@ -38,8 +52,7 @@ module.exports = {
       // bcrypt.hash(values.password, 10, function(err, hash) {
       //   if(err) return next(err);
       //   values.password = hash;
-      console.log('hashing password');
-      console.log(values);
+      sails.log.info('hashing password');
       next();
       // });
     }

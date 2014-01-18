@@ -9,13 +9,20 @@
  */
 module.exports = function(req, res, next) {
 
-  // User is allowed, proceed to the next policy, 
-  // or if this is the last policy, the controller
-  if (req.session.authenticated || req.headers.authorization === 'asdf') {
-    return next();
-  }
+	// User is allowed, proceed to the next policy,
+	// or if this is the last policy, the controller
+	User.findOne({oauth2token: req.headers.authorization}).exec(function(err, User) {
+		if (err) throw err;
 
-  // User is not allowed
-  // (default res.forbidden() behavior can be overridden in `config/403.js`)
-  return res.forbidden('You are not permitted to perform this action.');
+		sails.log.info('found user by token ' + req.headers.authorization);
+		sails.log.info(User);
+		if (User && req.headers.authorization == User.oauth2token) {
+			return next();
+		} else {
+			// User is not allowed
+			// (default res.forbidden() behavior can be overridden in `config/403.js`)
+			return res.forbidden('You are not permitted to perform this action.');
+		}
+	});
+
 };

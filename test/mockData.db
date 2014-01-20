@@ -1,0 +1,106 @@
+{
+  "data": {
+    "user": [{
+      "firstName": "Donald",
+      "lastName": "Forrester",
+      "email": "d.forrester@gmail.com",
+      "password": "asdf",
+      "oauth2token": "",
+      "publicKey": "",
+      "friends": [2, 3, 4],
+      "phoneNumber": "111-222-3333",
+      "createdAt": "2014-01-20T21:37:52.851Z",
+      "updatedAt": "2014-01-20T21:37:52.851Z",
+      "id": 1
+    }, {
+      "firstName": "Collin",
+      "lastName": "Forrester",
+      "email": "collin.forrester@gmail.com",
+      "password": "asdf",
+      "oauth2token": "",
+      "publicKey": "",
+      "friends": [],
+      "phoneNumber": "111-222-3333",
+      "createdAt": "2014-01-20T21:37:52.851Z",
+      "updatedAt": "2014-01-20T21:37:52.851Z",
+      "id": 2
+    }, {
+      "firstName": "Donald",
+      "lastName": "Forrester",
+      "email": "donald.forrester@gmail.com",
+      "password": "asdf",
+      "oauth2token": "",
+      "publicKey": "",
+      "friends": [],
+      "phoneNumber": "111-222-3333",
+      "createdAt": "2014-01-20T21:37:52.851Z",
+      "updatedAt": "2014-01-20T21:37:52.851Z",
+      "id": 3
+    }, {
+      "firstName": "Mini",
+      "lastName": "Forrester",
+      "email": "mini.forrester@gmail.com",
+      "password": "asdf",
+      "oauth2token": "",
+      "publicKey": "",
+      "friends": [],
+      "phoneNumber": "111-222-3333",
+      "createdAt": "2014-01-20T21:37:52.851Z",
+      "updatedAt": "2014-01-20T21:37:52.851Z",
+      "id": 4
+    }]
+  },
+  "schema": {
+    "user": {
+      "oauth2token": {
+        "type": "string",
+        "defaultsTo": ""
+      },
+      "publicKey": {
+        "type": "string",
+        "defaultsTo": ""
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "friends": {
+        "type": "array",
+        "defaultsTo": []
+      },
+      "phoneNumber": {
+        "type": "string",
+        "defaultsTo": "111-222-3333"
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "password": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "defaultsTo": "AUTO_INCREMENT",
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime",
+        "default": "NOW"
+      },
+      "updatedAt": {
+        "type": "datetime",
+        "default": "NOW"
+      }
+    }
+  },
+  "counters": {
+    "user": {
+      "id": 5
+    }
+  }
+}

@@ -21,7 +21,8 @@ module.exports.adapters = {
   // Persistent adapter for DEVELOPMENT ONLY
   // (data is preserved when the server shuts down)
   disk: {
-    module: 'sails-disk'
+    module: 'sails-disk',
+    filePath: 'test/mockData.db'
   },
 
   // MySQL is the world's most popular relational database.

@@ -30,6 +30,28 @@ module.exports = {
 	info: function(req, res) {
 		res.json({secret: 'The Chiefs suck.'});
 	},
+	find: function(req, res) {
+		if(req.params.id) {
+			User.findOne({id: req.params.id}).exec(function(err, user) {
+				if (err) throw err;
+				sails.log.info('returned user ', user);
+				var whereClause = user.friends ? user.friends.map(function(id) { return {id: id }; }) : [];
+				sails.log.info(whereClause);
+				User.find().where({ or: whereClause }).exec(function(err, users) {
+					if(err) throw err;
+
+					user.friends = users;
+					return res.json(user);
+				});
+			});
+		} else {
+			User.find().exec(function(err, user) {
+				if(err) throw err;
+
+				return res.json(user);
+			});
+		}
+	},
 	login: function(req, res) {
 		var email = req.query.email;
 		var password = req.query.password;

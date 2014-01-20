@@ -1,0 +1,16 @@
+<html>
+<head>
+<script src="https://rawgithub.com/evanvosberg/crypto-js/master/src/core.js"></script>
+<script src="https://rawgithub.com/evanvosberg/crypto-js/master/src/enc-base64.js"></script>
+<script src="https://rawgithub.com/evanvosberg/crypto-js/master/src/sha1.js"></script>
+<script src="https://rawgithub.com/evanvosberg/crypto-js/master/src/hmac.js"></script>
+<script>
+  var ts = new Date().getTime();
+  var nonce = (Math.random() + 1).toString(36).substring(7);
+  var message = btoa(ts+"\n"+nonce+"\nGET\n/user/info\nlocalhost\n1337\n\n");
+  var hash = CryptoJS.HmacSHA1(message, "somethingspecial123").toString(CryptoJS.enc.Base64);
+  var authHeader = 'hash='+hash+',ts='+ts+',nonce='+nonce+',publicKey=asdf1234';
+</script>
+</head>
+<body>
+</body></html>

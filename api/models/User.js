@@ -5,16 +5,7 @@
  * @description :: A short summary of how this model works and what it represents.
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
-function s4() {
-  return Math.floor((1 + Math.random()) * 0x10000)
-             .toString(16)
-             .substring(1);
-}
 
-function guid() {
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-         s4() + '-' + s4() + s4() + s4();
-}
 module.exports = {
 
   attributes: {
@@ -28,6 +19,10 @@ module.exports = {
     },
   	firstName: 'string',
     lastName: 'string',
+    friends: {
+      type: 'array',
+      defaultsTo: []
+    },
 
     // runtime properties computed
   	fullName: function() {
@@ -48,6 +43,7 @@ module.exports = {
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
+      delete obj.oauth2token;
       return obj;
     },
 

@@ -42,6 +42,7 @@ module.exports = {
 			// check username and password
 			if(email === 'collin.forrester@gmail.com' && password === 'asdf') {
 				User.oauth2token = 'somethingspecial123';
+				User.publicKey = 'asdf1234';
 				User.save(function(err) {
 					if(err) throw err;
 

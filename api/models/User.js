@@ -22,6 +22,10 @@ module.exports = {
       type: 'string',
       defaultsTo: ''
     },
+    publicKey: {
+      type: 'string',
+      defaultsTo: ''
+    },
   	firstName: 'string',
     lastName: 'string',
 
